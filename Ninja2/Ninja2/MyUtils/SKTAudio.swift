@@ -16,9 +16,18 @@ class SKTAudio {
         return SKTAudioInstance
     }
     
-    func playBGMusic(_ fileNamed: String) {
+    /*
+     Per tornare ad una sola canzone, basta togliere le paremntesi quadre a String,
+     eliminare randomIndex e selectFileName ed infine
+     mettere fileNamed al posto di selectedFileName in url
+     */
+    func playBGMusic(_ fileNamed: [String]) {
         if !SKTAudio.musicEnabled { return }
-        guard let url = Bundle.main.url(forResource: fileNamed, withExtension: nil) else { return }
+        
+        let randomIndex = Int.random(in: 0..<fileNamed.count)
+        let selectedFileName = fileNamed[randomIndex]
+        
+        guard let url = Bundle.main.url(forResource: selectedFileName, withExtension: nil) else { return }
         
         do {
             bgMusic = try AVAudioPlayer(contentsOf: url)

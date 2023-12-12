@@ -80,7 +80,9 @@ class GameScene: SKScene {
         setupNodes()
         
         //BackGround Music
-        SKTAudio.sharedInstance().playBGMusic("quack-8bit.mp3")
+        //SKTAudio.sharedInstance().playBGMusic("quack-8bit.mp3") CANZONE SINGOLA!!!
+        let songList = ["quack-8bit.mp3", "backgroundMusic.mp3"] // Aggiungi qui tutti i nomi dei tuoi file audio
+        SKTAudio.sharedInstance().playBGMusic(songList)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
