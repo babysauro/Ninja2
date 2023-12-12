@@ -61,7 +61,7 @@ extension MainMenu {
         addChild(bgNode)
         */
         
-        for i in 0...2 {
+        for i in 0...3 {
             let bgNode = SKSpriteNode(imageNamed: "background")
             bgNode.name = "background"
             bgNode.anchorPoint = .zero
@@ -72,7 +72,7 @@ extension MainMenu {
     }
     
     func setupGrounds() {
-        for i in 0...3 {
+        for i in 0...2 {
             let groundNode = SKSpriteNode(imageNamed: "ground")
             groundNode.name = "ground"
             groundNode.anchorPoint = .zero
@@ -98,7 +98,7 @@ extension MainMenu {
             node.position.x -= 8.0
                     
             if node.position.x < -self.frame.width {
-            node.position.x += node.frame.width*2.0
+            node.position.x = node.frame.width*2.0
             }
         }
     }
