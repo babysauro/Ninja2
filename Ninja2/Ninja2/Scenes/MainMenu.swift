@@ -150,7 +150,7 @@ extension MainMenu {
         scoreLbl.text = "Score: \(ScoreGenerator.sharedInstance.getScore())"
         scoreLbl.fontSize = 80.0
         scoreLbl.zPosition = 25.0
-        scoreLbl.position = CGPoint(x: x, y: -scoreLbl.frame.height - 30.0)
+        scoreLbl.position = CGPoint(x: x/2.0 - 28.0, y: -scoreLbl.frame.height - 30.0)
         panel.addChild(scoreLbl)
     }
     

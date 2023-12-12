@@ -207,7 +207,7 @@ extension GameScene {
         
         player = SKSpriteNode(imageNamed: "ninja")
         player.name = "Player"
-        player.zPosition = 5.0 //prima era 5.0 e il ninja stava dietro
+        player.zPosition = 5.0
         player.setScale(0.85)
         player.position = CGPoint(x: frame.width/2.0 - 100.0, 
                                   y: ground.frame.height + player.frame.height/2.0) //Set Player node position on Ground node
@@ -286,7 +286,7 @@ extension GameScene {
         let sprite = obstacles[index].copy() as! SKSpriteNode
         sprite.zPosition = 5.0
         sprite.setScale(0.85)
-        sprite.position = CGPoint(x: cameraRect.maxX + sprite.frame.width,
+        sprite.position = CGPoint(x: cameraRect.maxX + sprite.frame.width*6,
                                   y: ground.frame.height + sprite.frame.height/2.0)
         
         //Add physicsBody for Obstacles node
@@ -332,8 +332,8 @@ extension GameScene {
         coin.zPosition = 20.0
         coin.setScale(0.85)
         let coinHeight = coin.frame.height
-        let random = CGFloat.random(min: -coinHeight, max: coinHeight*2.0)
-        coin.position = CGPoint(x: cameraRect.maxX + coin.frame.width, y: size.height/2.0 + random)
+        let random = CGFloat.random(min: -coinHeight, max: coinHeight)
+        coin.position = CGPoint(x: cameraRect.maxX + coin.frame.width*6.0, y: size.height/2.0 + random)
         
         //Add physicsBody for Coin node
         coin.physicsBody = SKPhysicsBody(circleOfRadius: coin.size.width / 2.0)
