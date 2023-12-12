@@ -98,7 +98,7 @@ extension MainMenu {
             node.position.x -= 8.0
                     
             if node.position.x < -self.frame.width {
-            node.position.x += node.frame.width*2.0
+            node.position.x = node.frame.width*2.0
             }
         }
     }
@@ -108,14 +108,14 @@ extension MainMenu {
         play.name = "play"
         play.setScale(0.85)
         play.zPosition = 10.0
-        play.position = CGPoint(x: size.width/2.0, y: size.height - play.size.height - 100.0) //Qui ci dovrebbe essere un meno qualcosa
+        play.position = CGPoint(x: size.width/1.4, y: size.height - play.size.height - 100.0) //Qui ci dovrebbe essere un meno qualcosa
         addChild(play)
         
         let highscore = SKSpriteNode(imageNamed: "highscore")
         highscore.name = "highscore"
         highscore.setScale(0.85)
         highscore.zPosition = 10.0
-        highscore.position = CGPoint(x: size.width/2.0, y: size.height/1.5 - highscore.size.height) //Forse si deve aggiungere qualche altra cosa
+        highscore.position = CGPoint(x: size.width/1.8, y: size.height/1.5 - highscore.size.height) //Forse si deve aggiungere qualche altra cosa
         addChild(highscore)
         
         let setting = SKSpriteNode(imageNamed: "setting")
@@ -149,7 +149,7 @@ extension MainMenu {
         scoreLbl.text = "Score: \(ScoreGenerator.sharedInstance.getScore())"
         scoreLbl.fontSize = 80.0
         scoreLbl.zPosition = 25.0
-        scoreLbl.position = CGPoint(x: x, y: -scoreLbl.frame.height - 30.0)
+        scoreLbl.position = CGPoint(x: x / 2.0 - 28, y: -scoreLbl.frame.height - 30.0)
         panel.addChild(scoreLbl)
     }
     
