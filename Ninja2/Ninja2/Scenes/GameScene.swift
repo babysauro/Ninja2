@@ -42,6 +42,11 @@ class GameScene: SKScene {
     var pauseNode: SKSpriteNode!
     var containerNode = SKNode()
     
+    //Music and Effect
+    var soundcoin = SKAction.playSoundFileNamed("coin.mp3")
+    var soundJump = SKAction.playSoundFileNamed("jump.wav")
+    var soundCollision = SKAction.playSoundFileNamed("collision.wav")
+    
     //Add playable area for scene and camera playable area
     var playableRect: CGRect{
         let ratio: CGFloat
@@ -73,6 +78,9 @@ class GameScene: SKScene {
     //MARK: - Systems
     override func didMove(to view: SKView) {
         setupNodes()
+        
+        //BackGround Music
+        SKTAudio.sharedInstance().playBGMusic("quack-8bit.mp3")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -100,6 +108,7 @@ class GameScene: SKScene {
                 if onGround{
                        onGround = false
                        velocityY = -25.0
+                    run(soundJump) //Sound Effect
                 }
             }
         }
@@ -495,6 +504,7 @@ extension GameScene: SKPhysicsContactDelegate {
             numScore -= 1
             if numScore <= 0 {numScore = 0}
             scoreLbl.text = "\(numScore)"
+            run(soundCollision)
             
         case PhysicsCategory.Obstacle:
             setupGameover()
@@ -514,6 +524,9 @@ extension GameScene: SKPhysicsContactDelegate {
                     ScoreGenerator.sharedInstance.setHighscore(numScore)
                     ScoreGenerator.sharedInstance.setScore(highscore)
                 }
+                
+                run(soundcoin) //Sound Effect
+                
             }
         
         default: break
