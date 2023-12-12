@@ -35,7 +35,7 @@ class MainMenu: SKScene {
         } else if node.name == "highscore" {
             setupPanel()
         } else if node.name == "setting" {
-            setupSetting()
+            Setting()
         } else if node.name == "container" {
             containerNode.removeFromParent()
         }
@@ -55,11 +55,11 @@ extension MainMenu {
     func setupBG() {
         //Il backgound non è stato posizionato bene!!
         /*let bgNode = SKSpriteNode(imageNamed: "background")
-        bgNode.zPosition = -1.0
-        bgNode.anchorPoint = .zero
-        bgNode.position = .zero
-        addChild(bgNode)
-        */
+         bgNode.zPosition = -1.0
+         bgNode.anchorPoint = .zero
+         bgNode.position = .zero
+         addChild(bgNode)
+         */
         
         for i in 0...3 {
             let bgNode = SKSpriteNode(imageNamed: "background")
@@ -83,13 +83,13 @@ extension MainMenu {
         }
         
         /*for i in 0...2 {
-            let groundNode = SKSpriteNode(imageNamed: "ground")
-            groundNode.name = "ground"
-            groundNode.anchorPoint = .zero
-            groundNode.zPosition = 1.0
-            groundNode.position = CGPoint(x: CGFloat(i)*groundNode.frame.width, y: 0.0)
-            addChild(groundNode)
-        }*/
+         let groundNode = SKSpriteNode(imageNamed: "ground")
+         groundNode.name = "ground"
+         groundNode.anchorPoint = .zero
+         groundNode.zPosition = 1.0
+         groundNode.position = CGPoint(x: CGFloat(i)*groundNode.frame.width, y: 0.0)
+         addChild(groundNode)
+         }*/
         
         
     }
@@ -97,9 +97,9 @@ extension MainMenu {
         enumerateChildNodes(withName: "ground") { (node, _) in
             let node = node as! SKSpriteNode
             node.position.x -= 8.0
-                    
+            
             if node.position.x < -self.frame.width {
-            node.position.x = node.frame.width*2.0
+                node.position.x = node.frame.width*2.0
             }
         }
     }
@@ -126,7 +126,7 @@ extension MainMenu {
         setting.position = CGPoint(x: size.width/2.0, y: size.height/2.0 - setting.size.height - 50.0)
         addChild(setting)
     }
-
+    
     func setupPanel() {
         setupContainer()
         
@@ -170,7 +170,7 @@ extension MainMenu {
         panel.setScale(1.5)
         panel.zPosition = 20.0
         panel.position = .zero
-        containerNode.addChild(panel)
+       
         
         //Music
         let music = SKSpriteNode(imageNamed: "musicOn")
@@ -188,4 +188,6 @@ extension MainMenu {
         effect.position = CGPoint(x: music.frame.width + 50.0, y: 0.0)
         panel.addChild(effect)
     }
+
+    
 }
