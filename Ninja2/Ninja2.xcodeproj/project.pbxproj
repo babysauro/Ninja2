@@ -18,6 +18,7 @@
 		FA3E6FD02B27D3B10098B071 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA3E6FCC2B27D3B00098B071 /* backgroundMusic.mp3 */; };
 		FA3E6FD12B27D3B10098B071 /* coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA3E6FCD2B27D3B10098B071 /* coin.mp3 */; };
 		FA3E6FD22B27D3B10098B071 /* collision.wav in Resources */ = {isa = PBXBuildFile; fileRef = FA3E6FCE2B27D3B10098B071 /* collision.wav */; };
+		FA3E6FD52B28C4BA0098B071 /* SKTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3E6FD42B28C4BA0098B071 /* SKTAudio.swift */; };
 		FAEE75222B26660B0006E7E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE75212B26660B0006E7E1 /* AppDelegate.swift */; };
 		FAEE75242B26660B0006E7E1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FAEE75232B26660B0006E7E1 /* GameScene.sks */; };
 		FAEE75262B26660B0006E7E1 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = FAEE75252B26660B0006E7E1 /* Actions.sks */; };
@@ -40,6 +41,7 @@
 		FA3E6FCC2B27D3B00098B071 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		FA3E6FCD2B27D3B10098B071 /* coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin.mp3; sourceTree = "<group>"; };
 		FA3E6FCE2B27D3B10098B071 /* collision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = collision.wav; sourceTree = "<group>"; };
+		FA3E6FD42B28C4BA0098B071 /* SKTAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTAudio.swift; sourceTree = "<group>"; };
 		FAEE751E2B26660B0006E7E1 /* Ninja2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ninja2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEE75212B26660B0006E7E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAEE75232B26660B0006E7E1 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			children = (
 				FA3E6FBD2B274E1D0098B071 /* CGPoint+Ext.swift */,
 				FA3E6FBF2B274E320098B071 /* CGFloat+Ext.swift */,
+				FA3E6FD42B28C4BA0098B071 /* SKTAudio.swift */,
 			);
 			path = MyUtils;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAEE75282B26660B0006E7E1 /* GameScene.swift in Sources */,
+				FA3E6FD52B28C4BA0098B071 /* SKTAudio.swift in Sources */,
 				FA3E6FBE2B274E1D0098B071 /* CGPoint+Ext.swift in Sources */,
 				FA3E6FC62B27BA3A0098B071 /* ScoreGenerator.swift in Sources */,
 				FA3E6FCA2B27CA7E0098B071 /* GameOver.swift in Sources */,

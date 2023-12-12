@@ -165,11 +165,14 @@ extension MainMenu {
     }
     
     func setupSetting() {
+        setupContainer()
+        
         //Panel
         let panel = SKSpriteNode(imageNamed: "panel")
         panel.setScale(1.5)
         panel.zPosition = 20.0
         panel.position = .zero
+        containerNode.addChild(panel)
        
         
         //Music
@@ -179,6 +182,7 @@ extension MainMenu {
         music.zPosition = 25.0
         music.position = CGPoint(x: -music.frame.width - 50.0, y: 0.0)
         panel.addChild(music)
+        
         
         //Sound
         let effect = SKSpriteNode(imageNamed: "effectOn")
