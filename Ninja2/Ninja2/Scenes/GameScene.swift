@@ -218,6 +218,7 @@ extension GameScene {
         player.physicsBody!.restitution = 0.0
         player.physicsBody!.categoryBitMask = PhysicsCategory.Player
         player.physicsBody!.contactTestBitMask = PhysicsCategory.Block | PhysicsCategory.Obstacle | PhysicsCategory.Coin
+        self.view?.showsPhysics = false //TOLTO GREEN-BOX DI TUTTI
         
         
         playerPosY = player.position.y //Get current position of Player
