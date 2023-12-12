@@ -210,7 +210,7 @@ extension GameScene {
         player.zPosition = 5.0
         player.setScale(0.85)
         player.position = CGPoint(x: frame.width/2.0 - 100.0, 
-                                  y: ground.frame.height + player.frame.height/2.0) //Set Player node position on Ground node
+                                  y: ground.frame.height + player.frame.height/4.0) //Set Player node position on Ground node (changed 2 -> 4)
         
         //Add physicsBody for Player node
         player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2.0)
@@ -218,6 +218,7 @@ extension GameScene {
         player.physicsBody!.restitution = 0.0
         player.physicsBody!.categoryBitMask = PhysicsCategory.Player
         player.physicsBody!.contactTestBitMask = PhysicsCategory.Block | PhysicsCategory.Obstacle | PhysicsCategory.Coin
+        
         self.view?.showsPhysics = false //TOLTO GREEN-BOX DI TUTTI
         
         
@@ -288,7 +289,7 @@ extension GameScene {
         sprite.zPosition = 5.0
         sprite.setScale(0.85)
         sprite.position = CGPoint(x: cameraRect.maxX + sprite.frame.width*6,
-                                  y: ground.frame.height + sprite.frame.height/2.0)
+                                  y: ground.frame.height + sprite.frame.height/6.0) //Changed 2->6
         
         //Add physicsBody for Obstacles node
         sprite.physicsBody = SKPhysicsBody(rectangleOf: sprite.size)
