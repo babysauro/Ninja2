@@ -81,7 +81,7 @@ class GameScene: SKScene {
         
         //BackGround Music
         //SKTAudio.sharedInstance().playBGMusic("quack-8bit.mp3") CANZONE SINGOLA!!!
-        let songList = ["quack-8bit.mp3", "backgroundMusic.mp3"] // Aggiungi qui tutti i nomi dei tuoi file audio
+        let songList = ["quack-8bit.mp3", "backgroundMusic.mp3", "TakeOnMe-8Bit.mp3", "NeverGonnaGiveYouUp-8Bit.mp3"]
         SKTAudio.sharedInstance().playBGMusic(songList)
     }
     

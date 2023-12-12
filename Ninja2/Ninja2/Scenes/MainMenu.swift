@@ -19,6 +19,8 @@ class MainMenu: SKScene {
         setupGrounds()
         setupNodes()
         setupContainer() //Suggerimento chatGPT
+        
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -50,7 +52,7 @@ class MainMenu: SKScene {
         } else if node.name == "effect" {
             let node = node as! SKSpriteNode
             effectEnabled = !effectEnabled
-            node.texture = SKTexture(imageNamed: SKTAudio.musicEnabled ? "effectOn" : "effectOff")
+            node.texture = SKTexture(imageNamed: effectEnabled ? "effectOn" : "effectOff")
         }
         
     }
