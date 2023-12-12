@@ -35,7 +35,7 @@ class MainMenu: SKScene {
         } else if node.name == "highscore" {
             setupPanel()
         } else if node.name == "setting" {
-            Setting()
+            setupSetting()
         } else if node.name == "container" {
             containerNode.removeFromParent()
         }
@@ -73,7 +73,7 @@ extension MainMenu {
     }
     
     func setupGrounds() {
-        for i in 0...2 {
+        for i in 0...3 {
             let groundNode = SKSpriteNode(imageNamed: "ground")
             groundNode.name = "ground"
             groundNode.anchorPoint = .zero
@@ -116,14 +116,14 @@ extension MainMenu {
         highscore.name = "highscore"
         highscore.setScale(0.85)
         highscore.zPosition = 10.0
-        highscore.position = CGPoint(x: size.width/2.0, y: size.height/1.5 - highscore.size.height) //Forse si deve aggiungere qualche altra cosa
+        highscore.position = CGPoint(x: size.width/2.0, y: size.height/1.4 - highscore.size.height) //Forse si deve aggiungere qualche altra cosa
         addChild(highscore)
         
         let setting = SKSpriteNode(imageNamed: "setting")
         setting.name = "setting"
         setting.setScale(0.85)
         setting.zPosition = 10.0
-        setting.position = CGPoint(x: size.width/2.0, y: size.height/2.0 - setting.size.height - 50.0)
+        setting.position = CGPoint(x: size.width/2.0, y: size.height/1.8 - setting.size.height - 50.0)
         addChild(setting)
     }
     
