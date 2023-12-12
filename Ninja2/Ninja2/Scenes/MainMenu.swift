@@ -69,6 +69,7 @@ extension MainMenu {
             bgNode.zPosition = -1.0
             addChild(bgNode)
         }
+        
     }
     
     func setupGrounds() {
