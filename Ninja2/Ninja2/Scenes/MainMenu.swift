@@ -124,22 +124,35 @@ extension MainMenu {
         play.name = "play"
         play.setScale(0.85)
         play.zPosition = 10.0
-        play.position = CGPoint(x: size.width/2.0, y: size.height - play.size.height - 100.0) //Qui ci dovrebbe essere un meno qualcosa
+        //play.position = CGPoint(x: size.width/2.0, y: size.height - play.size.height - 100.0)
+        play.position = CGPoint(x: size.width/2.0, y: size.height/2.0 - 300.0)
         addChild(play)
         
         let highscore = SKSpriteNode(imageNamed: "highscore")
         highscore.name = "highscore"
         highscore.setScale(0.85)
         highscore.zPosition = 10.0
-        highscore.position = CGPoint(x: size.width/2.0, y: size.height/1.4 - highscore.size.height) //Forse si deve aggiungere qualche altra cosa
+        //highscore.position = CGPoint(x: size.width/2.0, y: size.height/1.4 - highscore.size.height)
+        highscore.position = CGPoint(x: size.width - highscore.size.width * 0.85, y: size.height - highscore.size.height * 0.85)
         addChild(highscore)
         
         let setting = SKSpriteNode(imageNamed: "setting")
         setting.name = "setting"
         setting.setScale(0.85)
         setting.zPosition = 10.0
-        setting.position = CGPoint(x: size.width/2.0, y: size.height/1.8 - setting.size.height - 50.0)
+        //setting.position = CGPoint(x: size.width/2.0, y: size.height/1.8 - setting.size.height - 50.0)
+        setting.position = CGPoint(x: highscore.position.x - setting.size.width * 1.1, y: size.height - setting.size.height * 0.85)
         addChild(setting)
+        
+        
+         let nameGame = SKSpriteNode(imageNamed: "jurassicquacktheme")
+         nameGame.name = "nameGame"
+         nameGame.setScale(0.85)
+         nameGame.zPosition = 10.0
+         nameGame.position = CGPoint(x: size.width/2.0, y: size.height/2.0 + 100.0)
+         addChild(nameGame)
+         
+         
     }
     
     func setupPanel() {

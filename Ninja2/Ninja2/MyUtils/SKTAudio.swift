@@ -24,6 +24,7 @@ class SKTAudio {
     func playBGMusic(_ fileNamed: [String]) {
         if !SKTAudio.musicEnabled { return }
         
+        //Random music
         let randomIndex = Int.random(in: 0..<fileNamed.count)
         let selectedFileName = fileNamed[randomIndex]
         
