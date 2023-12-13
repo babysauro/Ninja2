@@ -52,7 +52,7 @@ class GameScene: SKScene {
         let ratio: CGFloat
         
         switch UIScreen.main.nativeBounds.height{
-        case 2532, 2778, 2436: //case iPhone X
+        case 2532, 2778, 2436: //case iPhone 14
             ratio = 2.0
         default: //other cases
             ratio = 16/9
@@ -145,7 +145,7 @@ class GameScene: SKScene {
         velocityY += gravity
         player.position.y -= velocityY
         
-        if player.position.y < playerPosY{
+        if player.position.y < playerPosY {
             player.position.y = playerPosY
             velocityY = 0.0
             onGround = true
@@ -217,7 +217,7 @@ extension GameScene {
     
     func createPlayer(){
         
-        player = SKSpriteNode(imageNamed: "ninja")
+        player = SKSpriteNode(imageNamed: "duckSauro")
         player.name = "Player"
         player.zPosition = 5.0
         player.setScale(0.85)
@@ -399,7 +399,7 @@ extension GameScene {
         node.setScale(0.5)
         node.zPosition = 50.0
         node.position = CGPoint(x: -width + node.frame.width*i + j - 15.0,
-                                y: height/2.5 - node.frame.height)
+                                y: height/2.1 - node.frame.height)
         
         cameraNode.addChild(node)
     }
@@ -412,7 +412,7 @@ extension GameScene {
         
         
         coinIcon.position = CGPoint(x: -playableRect.width + coinIcon.frame.width * 1.2,
-                                    y: playableRect.height/2.0 - lifeNode[0].frame.height - coinIcon.frame.height*3.2)
+                                    y: playableRect.height/2.0 - lifeNode[0].frame.height - coinIcon.frame.height*2.0)
         
         cameraNode.addChild(coinIcon)
         
@@ -435,7 +435,7 @@ extension GameScene {
         pauseNode.zPosition = 50.0
         pauseNode.name = "pause"
         pauseNode.position = CGPoint(x: playableRect.width - pauseNode.frame.width,
-                                     y: playableRect.height/2.0 - pauseNode.frame.height/2.0 - 70.0)
+                                     y: playableRect.height/2.1 - pauseNode.frame.height/2.0 - 70.0)
         
         cameraNode.addChild(pauseNode)
         

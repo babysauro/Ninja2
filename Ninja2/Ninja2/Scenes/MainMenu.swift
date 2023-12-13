@@ -68,13 +68,6 @@ class MainMenu: SKScene {
 extension MainMenu {
     
     func setupBG() {
-        //Il backgound non è stato posizionato bene!!
-        /*let bgNode = SKSpriteNode(imageNamed: "background")
-         bgNode.zPosition = -1.0
-         bgNode.anchorPoint = .zero
-         bgNode.position = .zero
-         addChild(bgNode)
-         */
         
         for i in 0...3 {
             let bgNode = SKSpriteNode(imageNamed: "background")
@@ -96,16 +89,6 @@ extension MainMenu {
             groundNode.position = CGPoint(x: CGFloat(i)*groundNode.frame.width, y: 0.0)
             addChild(groundNode)
         }
-        
-        /*for i in 0...2 {
-         let groundNode = SKSpriteNode(imageNamed: "ground")
-         groundNode.name = "ground"
-         groundNode.anchorPoint = .zero
-         groundNode.zPosition = 1.0
-         groundNode.position = CGPoint(x: CGFloat(i)*groundNode.frame.width, y: 0.0)
-         addChild(groundNode)
-         }*/
-        
         
     }
     func moveGrounds() {
