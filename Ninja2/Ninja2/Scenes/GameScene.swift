@@ -112,7 +112,7 @@ class GameScene: SKScene {
             if !isPaused {
                 if onGround{
                        onGround = false
-                       velocityY = -25.0
+                       velocityY = -30.0
                     run(soundJump) //Sound Effect
                 }
             }
@@ -383,7 +383,7 @@ extension GameScene {
         ])))
     }
     
-    //REDCOIN
+    //RED-COIN
     func setupRedCoin() {
         redCoin = SKSpriteNode(imageNamed: "redcoin-1")
         redCoin.name = "RedCoin"
@@ -449,7 +449,7 @@ extension GameScene {
     }
     
     func setupScore() {
-        //Icon
+        //Coin
         coinIcon = SKSpriteNode(imageNamed: "coin-1")
         coinIcon.setScale(0.5)
         coinIcon.zPosition = 50.0
@@ -555,7 +555,7 @@ extension GameScene: SKPhysicsContactDelegate {
             
         case PhysicsCategory.Obstacle:
             setupGameover()
-           
+            
         case PhysicsCategory.Coin:
             if let node = other.node {
                 node.removeFromParent() //Take the coin
@@ -575,9 +575,31 @@ extension GameScene: SKPhysicsContactDelegate {
                 run(soundcoin) //Sound Effect
                 
             }
-        
+            
+        case PhysicsCategory.RedCoin:
+            print("Player collided with RedCoin")
+            if let node = other.node {
+                node.removeFromParent() //Take the coin
+                numScore += 2
+                print("Score incremented by 2: \(numScore)")
+                scoreLbl.text = "\(numScore)"
+                if numScore % 5 == 0{
+                    cameraMovePointPerSecond += 100.0
+                }
+                
+                //Use UserDefaults to save and get scores
+                let highscore = ScoreGenerator.sharedInstance.getHighscore()
+                if numScore > highscore {
+                    ScoreGenerator.sharedInstance.setHighscore(numScore)
+                    ScoreGenerator.sharedInstance.setScore(highscore)
+                }
+                
+                run(soundcoin) //Sound Effect
+                
+                
+            }
         default: break
         }
+        
     }
-    
 }

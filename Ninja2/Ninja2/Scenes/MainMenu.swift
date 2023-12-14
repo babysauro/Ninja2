@@ -11,6 +11,7 @@ class MainMenu: SKScene {
     
     //MARK: - Properties
     var containerNode: SKSpriteNode!
+    var jumpSound: SKAction!
     
     //MARK: - Systems
     
@@ -20,6 +21,7 @@ class MainMenu: SKScene {
         setupNodes()
         setupContainer() //Suggerimento chatGPT
         
+        //jumpSound = SKAction.playSoundFileNamed("jump.mp3")
         
     }
     
@@ -53,6 +55,9 @@ class MainMenu: SKScene {
             let node = node as! SKSpriteNode
             effectEnabled = !effectEnabled
             node.texture = SKTexture(imageNamed: effectEnabled ? "effectOn" : "effectOff")
+            
+            //If effectOff -> effectOn, play jump
+            //if effectEnabled { self.run(jumpSound) }
         }
         
     }
