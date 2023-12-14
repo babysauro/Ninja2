@@ -17,6 +17,7 @@ class GameScene: SKScene {
     
     var obstacles: [SKSpriteNode] = []
     var coin: SKSpriteNode!
+    var redCoin: SKSpriteNode!
     
     //Move camera -> camera moves with speed 450pt per seconds
     var cameraMovePointPerSecond: CGFloat = 450.0
@@ -27,7 +28,7 @@ class GameScene: SKScene {
     var isTime: CGFloat = 3.0
     var onGround = true
     var velocityY: CGFloat = 0.0
-    var gravity: CGFloat = 0.3
+    var gravity: CGFloat = 0.4
     var playerPosY: CGFloat = 0.0
     
     var numScore: Int = 0
@@ -171,6 +172,8 @@ extension GameScene {
         spawnObstacles()
         setupCoin()
         spawnCoin()
+        setupRedCoin()
+        spawnRedCoin()
         setupPhysics()
         setupLife()
         setupScore()
@@ -340,6 +343,7 @@ extension GameScene {
         ])))
     }
     
+    //COIN
     func setupCoin() {
         coin = SKSpriteNode(imageNamed: "coin-1")
         coin.name = "Coin"
@@ -374,6 +378,45 @@ extension GameScene {
             .wait(forDuration: random),
             .run { [weak self] in
                 self?.setupCoin()
+            }
+        ])))
+    }
+    
+    //REDCOIN
+    func setupRedCoin() {
+        redCoin = SKSpriteNode(imageNamed: "redcoin-1")
+        redCoin.name = "RedCoin"
+        redCoin.zPosition = 20.0
+        redCoin.setScale(0.85)
+        let coinHeight = redCoin.frame.height
+        let random = CGFloat.random(min: -coinHeight, max: coinHeight)
+        redCoin.position = CGPoint(x: cameraRect.maxX + redCoin.frame.width*6.0, y: size.height/2.0 + random)
+        
+        //Add physicsBody for Coin node
+        redCoin.physicsBody = SKPhysicsBody(circleOfRadius: redCoin.size.width / 2.0)
+        redCoin.physicsBody!.affectedByGravity = false
+        redCoin.physicsBody!.isDynamic = false
+        redCoin.physicsBody!.categoryBitMask = PhysicsCategory.RedCoin
+        redCoin.physicsBody!.contactTestBitMask = PhysicsCategory.Player
+        
+        addChild(redCoin)
+        redCoin.run(.sequence([.wait(forDuration: 15.0), .removeFromParent()]))
+        
+        //Add animation for Coin
+        var textures: [SKTexture] = []
+        for i in 1...6{
+            textures.append(SKTexture(imageNamed: "redcoin-\(i)"))
+        }
+        
+        redCoin.run(.repeatForever(.animate(with: textures, timePerFrame: 0.083)))
+    }
+    
+    func spawnRedCoin() {
+        let random = CGFloat.random(min: 2.5, max: 30.0)
+        run(.repeatForever(.sequence([
+            .wait(forDuration: random),
+            .run { [weak self] in
+                self?.setupRedCoin()
             }
         ])))
     }
@@ -431,7 +474,7 @@ extension GameScene {
     func setupPause() {
         
         pauseNode = SKSpriteNode(imageNamed: "pause")
-        pauseNode.setScale(0.5)
+        pauseNode.setScale(0.8)
         pauseNode.zPosition = 50.0
         pauseNode.name = "pause"
         pauseNode.position = CGPoint(x: playableRect.width - pauseNode.frame.width,

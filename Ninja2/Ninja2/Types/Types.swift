@@ -18,5 +18,6 @@ struct PhysicsCategory {
     static let Obstacle: UInt32 = 0b100 //4
     static let Ground: UInt32 = 0b100   //8
     static let Coin: UInt32 = 0b10000   //16
+    static let RedCoin: UInt32 = 0b10000 //16
     
 }
