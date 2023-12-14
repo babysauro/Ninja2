@@ -412,7 +412,7 @@ extension GameScene {
     }
     
     func spawnRedCoin() {
-        let random = CGFloat.random(min: 2.5, max: 30.0)
+        let random = CGFloat.random(min: 2.5, max: 50.0)
         run(.repeatForever(.sequence([
             .wait(forDuration: random),
             .run { [weak self] in
