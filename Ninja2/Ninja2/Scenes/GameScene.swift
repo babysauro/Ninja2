@@ -17,6 +17,7 @@ class GameScene: SKScene {
     
     var obstacles: [SKSpriteNode] = []
     var coin: SKSpriteNode!
+    var redCoin: SKSpriteNode!
     
     //Move camera -> camera moves with speed 450pt per seconds
     var cameraMovePointPerSecond: CGFloat = 450.0
@@ -27,7 +28,7 @@ class GameScene: SKScene {
     var isTime: CGFloat = 3.0
     var onGround = true
     var velocityY: CGFloat = 0.0
-    var gravity: CGFloat = 0.6
+    var gravity: CGFloat = 0.4
     var playerPosY: CGFloat = 0.0
     
     var numScore: Int = 0
@@ -42,12 +43,17 @@ class GameScene: SKScene {
     var pauseNode: SKSpriteNode!
     var containerNode = SKNode()
     
+    //Music and Effect
+    var soundcoin = SKAction.playSoundFileNamed("newCoin.wav")
+    var soundJump = SKAction.playSoundFileNamed("jump.wav")
+    var soundCollision = SKAction.playSoundFileNamed("collision.wav")
+    
     //Add playable area for scene and camera playable area
     var playableRect: CGRect{
         let ratio: CGFloat
         
         switch UIScreen.main.nativeBounds.height{
-        case 2532, 2778, 2436: //case iPhone X
+        case 2532, 2778, 2436: //case iPhone 14
             ratio = 2.0
         default: //other cases
             ratio = 16/9
@@ -73,6 +79,13 @@ class GameScene: SKScene {
     //MARK: - Systems
     override func didMove(to view: SKView) {
         setupNodes()
+        
+        //BackGround Music
+        //SKTAudio.sharedInstance().playBGMusic("quack-8bit.mp3") CANZONE SINGOLA!!!
+        let songList = ["quack-8bit.mp3", "WhatIsLove-8Bit.mp3", "TakeOnMe-8Bit.mp3", "NeverGonnaGiveYouUp-8Bit.mp3",
+                        "ShootingStars-8Bit.mp3", "BlueDaBaDee-8Bit.mp3", "SweetChildOnMe-8Bit.mp3", "LivinOnAPrayer-8Bit.mp3",
+                        "SmellsLikeTeenSpirit-8Bit.mp3"]
+        SKTAudio.sharedInstance().playBGMusic(songList)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -100,6 +113,7 @@ class GameScene: SKScene {
                 if onGround{
                        onGround = false
                        velocityY = -25.0
+                    run(soundJump) //Sound Effect
                 }
             }
         }
@@ -133,7 +147,7 @@ class GameScene: SKScene {
         velocityY += gravity
         player.position.y -= velocityY
         
-        if player.position.y < playerPosY{
+        if player.position.y < playerPosY {
             player.position.y = playerPosY
             velocityY = 0.0
             onGround = true
@@ -159,6 +173,8 @@ extension GameScene {
         spawnObstacles()
         setupCoin()
         spawnCoin()
+        setupRedCoin()
+        spawnRedCoin()
         setupPhysics()
         setupLife()
         setupScore()
@@ -205,12 +221,12 @@ extension GameScene {
     
     func createPlayer(){
         
-        player = SKSpriteNode(imageNamed: "ninja")
+        player = SKSpriteNode(imageNamed: "duckSauro")
         player.name = "Player"
-        player.zPosition = 5.0 //prima era 5.0 e il ninja stava dietro
+        player.zPosition = 5.0
         player.setScale(0.85)
-        player.position = CGPoint(x: frame.width/2.0 - 100.0, 
-                                  y: ground.frame.height + player.frame.height/2.0) //Set Player node position on Ground node
+        player.position = CGPoint(x: frame.width/2.0 - 100.0,
+                                  y: ground.frame.height + player.frame.height/4.0) //Set Player node position on Ground node (changed 2 -> 4)
         
         //Add physicsBody for Player node
         player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2.0)
@@ -218,6 +234,8 @@ extension GameScene {
         player.physicsBody!.restitution = 0.0
         player.physicsBody!.categoryBitMask = PhysicsCategory.Player
         player.physicsBody!.contactTestBitMask = PhysicsCategory.Block | PhysicsCategory.Obstacle | PhysicsCategory.Coin
+        
+        self.view?.showsPhysics = false //TOLTO GREEN-BOX DI TUTTI
         
         
         playerPosY = player.position.y //Get current position of Player
@@ -286,8 +304,8 @@ extension GameScene {
         let sprite = obstacles[index].copy() as! SKSpriteNode
         sprite.zPosition = 5.0
         sprite.setScale(0.85)
-        sprite.position = CGPoint(x: cameraRect.maxX + sprite.frame.width,
-                                  y: ground.frame.height + sprite.frame.height/2.0)
+        sprite.position = CGPoint(x: cameraRect.maxX + sprite.frame.width*6,
+                                  y: ground.frame.height + sprite.frame.height/6.0) //Changed 2->6
         
         //Add physicsBody for Obstacles node
         sprite.physicsBody = SKPhysicsBody(rectangleOf: sprite.size)
@@ -326,14 +344,15 @@ extension GameScene {
         ])))
     }
     
+    //COIN
     func setupCoin() {
         coin = SKSpriteNode(imageNamed: "coin-1")
         coin.name = "Coin"
         coin.zPosition = 20.0
         coin.setScale(0.85)
         let coinHeight = coin.frame.height
-        let random = CGFloat.random(min: -coinHeight, max: coinHeight*2.0)
-        coin.position = CGPoint(x: cameraRect.maxX + coin.frame.width, y: size.height/2.0 + random)
+        let random = CGFloat.random(min: -coinHeight, max: coinHeight)
+        coin.position = CGPoint(x: cameraRect.maxX + coin.frame.width*6.0, y: size.height/2.0 + random)
         
         //Add physicsBody for Coin node
         coin.physicsBody = SKPhysicsBody(circleOfRadius: coin.size.width / 2.0)
@@ -364,6 +383,45 @@ extension GameScene {
         ])))
     }
     
+    //REDCOIN
+    func setupRedCoin() {
+        redCoin = SKSpriteNode(imageNamed: "redcoin-1")
+        redCoin.name = "RedCoin"
+        redCoin.zPosition = 20.0
+        redCoin.setScale(0.85)
+        let coinHeight = redCoin.frame.height
+        let random = CGFloat.random(min: -coinHeight, max: coinHeight)
+        redCoin.position = CGPoint(x: cameraRect.maxX + redCoin.frame.width*6.0, y: size.height/2.0 + random)
+        
+        //Add physicsBody for Coin node
+        redCoin.physicsBody = SKPhysicsBody(circleOfRadius: redCoin.size.width / 2.0)
+        redCoin.physicsBody!.affectedByGravity = false
+        redCoin.physicsBody!.isDynamic = false
+        redCoin.physicsBody!.categoryBitMask = PhysicsCategory.RedCoin
+        redCoin.physicsBody!.contactTestBitMask = PhysicsCategory.Player
+        
+        addChild(redCoin)
+        redCoin.run(.sequence([.wait(forDuration: 15.0), .removeFromParent()]))
+        
+        //Add animation for Coin
+        var textures: [SKTexture] = []
+        for i in 1...6{
+            textures.append(SKTexture(imageNamed: "redcoin-\(i)"))
+        }
+        
+        redCoin.run(.repeatForever(.animate(with: textures, timePerFrame: 0.083)))
+    }
+    
+    func spawnRedCoin() {
+        let random = CGFloat.random(min: 2.5, max: 50.0)
+        run(.repeatForever(.sequence([
+            .wait(forDuration: random),
+            .run { [weak self] in
+                self?.setupRedCoin()
+            }
+        ])))
+    }
+    
     func setupLife() {
         let node1 = SKSpriteNode(imageNamed: "life-on")
         let node2 = SKSpriteNode(imageNamed: "life-on")
@@ -385,7 +443,7 @@ extension GameScene {
         node.setScale(0.5)
         node.zPosition = 50.0
         node.position = CGPoint(x: -width + node.frame.width*i + j - 15.0,
-                                y: height/2.5 - node.frame.height)
+                                y: height/2.1 - node.frame.height)
         
         cameraNode.addChild(node)
     }
@@ -398,7 +456,7 @@ extension GameScene {
         
         
         coinIcon.position = CGPoint(x: -playableRect.width + coinIcon.frame.width * 1.2,
-                                    y: playableRect.height/2.0 - lifeNode[0].frame.height - coinIcon.frame.height*3.2)
+                                    y: playableRect.height/2.0 - lifeNode[0].frame.height - coinIcon.frame.height*2.0)
         
         cameraNode.addChild(coinIcon)
         
@@ -417,11 +475,11 @@ extension GameScene {
     func setupPause() {
         
         pauseNode = SKSpriteNode(imageNamed: "pause")
-        pauseNode.setScale(0.5)
+        pauseNode.setScale(0.8)
         pauseNode.zPosition = 50.0
         pauseNode.name = "pause"
         pauseNode.position = CGPoint(x: playableRect.width - pauseNode.frame.width,
-                                     y: playableRect.height/2.0 - pauseNode.frame.height/2.0 - 70.0)
+                                     y: playableRect.height/2.1 - pauseNode.frame.height/2.0 - 70.0)
         
         cameraNode.addChild(pauseNode)
         
@@ -493,6 +551,7 @@ extension GameScene: SKPhysicsContactDelegate {
             numScore -= 1
             if numScore <= 0 {numScore = 0}
             scoreLbl.text = "\(numScore)"
+            run(soundCollision)
             
         case PhysicsCategory.Obstacle:
             setupGameover()
@@ -512,6 +571,9 @@ extension GameScene: SKPhysicsContactDelegate {
                     ScoreGenerator.sharedInstance.setHighscore(numScore)
                     ScoreGenerator.sharedInstance.setScore(highscore)
                 }
+                
+                run(soundcoin) //Sound Effect
+                
             }
         
         default: break
