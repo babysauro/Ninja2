@@ -154,7 +154,7 @@ extension MainMenu {
         
         //Highscore
         let x = -panel.frame.width/2.0 + 250.0
-        let highscoreLbl = SKLabelNode(fontNamed: "LiberationSans-Bold.ttf")
+        let highscoreLbl = SKLabelNode(fontNamed: "Krungthep")
         //highscoreLbl.fontName = "LiberationSans-Bold"
         highscoreLbl.text = "Highscore: \(ScoreGenerator.sharedInstance.getHighscore())"
         highscoreLbl.horizontalAlignmentMode = .left
@@ -164,8 +164,7 @@ extension MainMenu {
         highscoreLbl.position = CGPoint(x: x, y: highscoreLbl.frame.height/2.0 - 12.0)
         panel.addChild(highscoreLbl)
         
-        let scoreLbl = SKLabelNode(fontNamed: "LiberationSans-Bold.ttf")
-        scoreLbl.fontName = "LiberationSans-Bold"
+        let scoreLbl = SKLabelNode(fontNamed: "Krungthep")
         scoreLbl.text = "Score: \(ScoreGenerator.sharedInstance.getScore())"
         scoreLbl.fontSize = 80.0
         scoreLbl.zPosition = 25.0

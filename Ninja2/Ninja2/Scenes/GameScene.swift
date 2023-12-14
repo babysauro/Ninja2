@@ -570,6 +570,9 @@ extension GameScene: SKPhysicsContactDelegate {
                 if numScore > highscore {
                     ScoreGenerator.sharedInstance.setHighscore(numScore)
                     ScoreGenerator.sharedInstance.setScore(highscore)
+                } else {
+                    ScoreGenerator.sharedInstance.setHighscore(highscore)
+                    ScoreGenerator.sharedInstance.setScore(numScore)
                 }
                 
                 run(soundcoin) //Sound Effect
@@ -592,6 +595,9 @@ extension GameScene: SKPhysicsContactDelegate {
                 if numScore > highscore {
                     ScoreGenerator.sharedInstance.setHighscore(numScore)
                     ScoreGenerator.sharedInstance.setScore(highscore)
+                } else {
+                    ScoreGenerator.sharedInstance.setHighscore(highscore)
+                    ScoreGenerator.sharedInstance.setScore(numScore)
                 }
                 
                 run(soundcoin) //Sound Effect
