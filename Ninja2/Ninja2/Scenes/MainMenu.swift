@@ -108,7 +108,7 @@ extension MainMenu {
         play.setScale(0.85)
         play.zPosition = 10.0
         //play.position = CGPoint(x: size.width/2.0, y: size.height - play.size.height - 100.0)
-        play.position = CGPoint(x: size.width/2.0, y: size.height/2.0 - 300.0)
+        play.position = CGPoint(x: size.width/2.0, y: size.height/2.0 - 100.0)
         addChild(play)
         
         let highscore = SKSpriteNode(imageNamed: "highscore")
@@ -116,7 +116,7 @@ extension MainMenu {
         highscore.setScale(0.85)
         highscore.zPosition = 10.0
         //highscore.position = CGPoint(x: size.width/2.0, y: size.height/1.4 - highscore.size.height)
-        highscore.position = CGPoint(x: size.width - highscore.size.width * 0.85, y: size.height - highscore.size.height * 0.85)
+        highscore.position = CGPoint(x: size.width - highscore.size.width * 0.85 - 100.0, y: size.height - highscore.size.height * 0.85 - 15.0)
         addChild(highscore)
         
         let setting = SKSpriteNode(imageNamed: "setting")
@@ -124,7 +124,7 @@ extension MainMenu {
         setting.setScale(0.85)
         setting.zPosition = 10.0
         //setting.position = CGPoint(x: size.width/2.0, y: size.height/1.8 - setting.size.height - 50.0)
-        setting.position = CGPoint(x: highscore.position.x - setting.size.width * 1.1, y: size.height - setting.size.height * 0.85)
+        setting.position = CGPoint(x: highscore.position.x - setting.size.width * 1.3, y: size.height - setting.size.height * 0.85 - 15.0)
         addChild(setting)
         
         
@@ -132,7 +132,7 @@ extension MainMenu {
          nameGame.name = "nameGame"
          nameGame.setScale(0.85)
          nameGame.zPosition = 10.0
-         nameGame.position = CGPoint(x: size.width/2.0, y: size.height/2.0 + 100.0)
+         nameGame.position = CGPoint(x: size.width/2.0, y: size.height/2.0 + 200.0)
          addChild(nameGame)
          
          
@@ -144,24 +144,26 @@ extension MainMenu {
         let panel = SKSpriteNode(imageNamed: "panel")
         panel.setScale(1.5)
         panel.zPosition = 20.0
-        panel.position = .zero
+        panel.position = CGPoint(x: size.width/65.0, y: size.height/27.0)
         containerNode.addChild(panel)
         
         //Highscore
         let x = -panel.frame.width/2.0 + 250.0
-        let highscoreLbl = SKLabelNode(fontNamed: "Krugthep")
+        let highscoreLbl = SKLabelNode(fontNamed: "LiberationSans-Bold.ttf")
         highscoreLbl.text = "Highscore: \(ScoreGenerator.sharedInstance.getHighscore())"
         highscoreLbl.horizontalAlignmentMode = .left
         highscoreLbl.fontSize = 80.0
         highscoreLbl.zPosition = 25.0
-        highscoreLbl.position = CGPoint(x: x, y: highscoreLbl.frame.height/2.0 - 30.0)
+        //highscoreLbl.position = CGPoint(x: x, y: highscoreLbl.frame.height/2.0 - 30.0)
+        highscoreLbl.position = CGPoint(x: x, y: highscoreLbl.frame.height/2.0 - 12.0)
         panel.addChild(highscoreLbl)
         
         let scoreLbl = SKLabelNode(fontNamed: "Krugthep")
         scoreLbl.text = "Score: \(ScoreGenerator.sharedInstance.getScore())"
         scoreLbl.fontSize = 80.0
         scoreLbl.zPosition = 25.0
-        scoreLbl.position = CGPoint(x: x/2.0 - 28.0, y: -scoreLbl.frame.height - 30.0)
+        //scoreLbl.position = CGPoint(x: x/2.0 - 28.0, y: -scoreLbl.frame.height - 30.0)
+        scoreLbl.position = CGPoint(x: x/2.0 + 25.0, y: -scoreLbl.frame.height - 32.0)
         panel.addChild(scoreLbl)
     }
     
@@ -182,7 +184,7 @@ extension MainMenu {
         let panel = SKSpriteNode(imageNamed: "panel")
         panel.setScale(1.5)
         panel.zPosition = 20.0
-        panel.position = .zero
+        panel.position = CGPoint(x: size.width/65.0, y: size.height/27.0)
         containerNode.addChild(panel)
        
         
@@ -191,7 +193,7 @@ extension MainMenu {
         music.name = "music"
         music.setScale(0.7)
         music.zPosition = 25.0
-        music.position = CGPoint(x: -music.frame.width - 50.0, y: 0.0)
+        music.position = CGPoint(x: -music.frame.width - 35.0, y: 5.0)
         panel.addChild(music)
         
         
@@ -200,7 +202,7 @@ extension MainMenu {
         effect.name = "effect"
         effect.setScale(0.7)
         effect.zPosition = 25.0
-        effect.position = CGPoint(x: music.frame.width + 50.0, y: 0.0)
+        effect.position = CGPoint(x: music.frame.width + 35.0, y: 5.0)
         panel.addChild(effect)
     }
 

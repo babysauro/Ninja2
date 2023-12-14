@@ -16,7 +16,7 @@ class GameOver: SKScene {
         createNode()
          
         //BackGround SONG
-        let songList = ["ACDC - Back In Black_2.mp3"]
+        let songList = ["EyeofTheTiger-8Bit.mp3"]
         SKTAudio.sharedInstance().playBGMusic(songList)
         
         run(.sequence([
