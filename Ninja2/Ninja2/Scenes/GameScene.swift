@@ -27,7 +27,7 @@ class GameScene: SKScene {
     var isTime: CGFloat = 3.0
     var onGround = true
     var velocityY: CGFloat = 0.0
-    var gravity: CGFloat = 0.6
+    var gravity: CGFloat = 0.3
     var playerPosY: CGFloat = 0.0
     
     var numScore: Int = 0

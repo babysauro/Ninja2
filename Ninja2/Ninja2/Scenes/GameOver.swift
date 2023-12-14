@@ -14,6 +14,10 @@ class GameOver: SKScene {
         createBGNodes()
         createGroundNodes()
         createNode()
+         
+        //BackGround SONG
+        let songList = ["ACDC - Back In Black_2.mp3"]
+        SKTAudio.sharedInstance().playBGMusic(songList)
         
         run(.sequence([
             .wait(forDuration: 5.0),
@@ -27,6 +31,18 @@ class GameOver: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         moveNodes()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        // Assume che il tocco sullo schermo riporti al MainMenu
+        if let view = self.view {
+            let transition = SKTransition.doorsCloseVertical(withDuration: 0.5)
+            let mainMenuScene = MainMenu(size: self.size)
+            mainMenuScene.scaleMode = self.scaleMode
+            view.presentScene(mainMenuScene, transition: transition)
+        }
     }
     
 }
