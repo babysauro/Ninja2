@@ -58,7 +58,11 @@ class MainMenu: SKScene {
             
             //If effectOff -> effectOn, play jump
             //if effectEnabled { self.run(jumpSound) }
-        }
+        } /*else if node.name == "tutorial" {
+            let tutorialScene = TutorialScene(size: size)
+            tutorialScene.scaleMode = scaleMode
+            view!.presentScene(tutorialScene, transition: .fade(withDuration: 0.5))
+        }*/
         
     }
     
@@ -140,7 +144,15 @@ extension MainMenu {
          nameGame.position = CGPoint(x: size.width/2.0, y: size.height/2.0 + 200.0)
          addChild(nameGame)
          
-         
+        /*
+        //TUTORIAL
+        let tutorialButton = SKSpriteNode(imageNamed: "question-mark-cartoon")
+        tutorialButton.name = "tutorial"
+        tutorialButton.setScale(0.20)
+        tutorialButton.zPosition = 10.0
+        tutorialButton.position = CGPoint(x: size.width/2.0, y: size.height/2.0 - 350.0)
+        addChild(tutorialButton)
+         */
     }
     
     func setupPanel() {

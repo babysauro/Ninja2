@@ -36,7 +36,7 @@ class GameScene: SKScene {
     var life: Int = 3
     
     var lifeNode: [SKSpriteNode] = []
-    var scoreLbl = SKLabelNode(fontNamed: "Krungthep") //Font
+    var scoreLbl = SKLabelNode(fontNamed: "SpaceMission-rgyw9") //Font
     var coinIcon: SKSpriteNode!
     
     //Add pause node into Scene
@@ -580,11 +580,9 @@ extension GameScene: SKPhysicsContactDelegate {
             }
             
         case PhysicsCategory.RedCoin:
-            print("Player collided with RedCoin")
             if let node = other.node {
                 node.removeFromParent() //Take the coin
                 numScore += 2
-                print("Score incremented by 2: \(numScore)")
                 scoreLbl.text = "\(numScore)"
                 if numScore % 5 == 0{
                     cameraMovePointPerSecond += 100.0
