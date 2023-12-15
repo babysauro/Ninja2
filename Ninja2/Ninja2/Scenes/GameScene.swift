@@ -36,7 +36,7 @@ class GameScene: SKScene {
     var life: Int = 3
     
     var lifeNode: [SKSpriteNode] = []
-    var scoreLbl = SKLabelNode(fontNamed: "SpaceMission-rgyw9") //Font
+    var scoreLbl = SKLabelNode(fontNamed: "Krungthep") //Font
     var coinIcon: SKSpriteNode!
     
     //Add pause node into Scene
@@ -83,7 +83,7 @@ class GameScene: SKScene {
         //BackGround Music
         //SKTAudio.sharedInstance().playBGMusic("quack-8bit.mp3") CANZONE SINGOLA!!!
         let songList = ["quack-8bit.mp3", "WhatIsLove-8Bit.mp3", "TakeOnMe-8Bit.mp3", "NeverGonnaGiveYouUp-8Bit.mp3",
-                        "ShootingStars-8Bit.mp3", "BlueDaBaDee-8Bit.mp3", "SweetChildOnMe-8Bit.mp3", "LivinOnAPrayer-8Bit.mp3",
+                        "ShootingStars-8Bit.mp3", "BlueDaBaDee-8Bit.mp3", "SweetChildOMe-8Bit.mp3", "LivinOnAPrayer-8Bit.mp3",
                         "SmellsLikeTeenSpirit-8Bit.mp3"]
         SKTAudio.sharedInstance().playBGMusic(songList)
     }
